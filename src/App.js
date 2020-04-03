@@ -9,8 +9,8 @@ import "./App.css";
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <GlobalStyle />
         <Routes />
       </BrowserRouter>
