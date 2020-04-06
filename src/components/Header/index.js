@@ -5,7 +5,15 @@ import { MdShoppingBasket } from "react-icons/md";
 
 import logo from "../../assets/images/logo.svg";
 
-export default function Header() {
+import { connect } from "react-redux";
+
+function Header({ cart }) {
+  console.log("Tamanho do Carrinho: " + cart.length);
+  const countItems = cart.reduce((result, item) => {
+    console.log("item: " + item.amount);
+    return item.amount + result;
+  }, 0);
+
   return (
     <Container>
       <Link to="/">
@@ -15,10 +23,16 @@ export default function Header() {
       <Cart to="/cart">
         <div>
           <strong>Meu carrinho</strong>
-          <span>3 itens</span>
+          <span>{countItems} itens</span>
         </div>
         <MdShoppingBasket size={36} color="#FFF" />
       </Cart>
     </Container>
   );
 }
+
+const mapState = state => ({
+  cart: state.cart
+});
+
+export default connect(mapState)(Header);

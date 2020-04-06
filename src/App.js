@@ -3,17 +3,22 @@ import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes";
 import GlobalStyle from "./styles/Global";
 import Header from "../src/components/Header";
+import { Provider } from "react-redux";
+import "./config/ReactotronConfig";
+import store from "./store";
 
 import "./App.css";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <GlobalStyle />
-        <Routes />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+          <GlobalStyle />
+          <Routes />
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }
