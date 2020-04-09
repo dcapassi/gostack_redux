@@ -28,6 +28,11 @@ class Home extends Component {
     });
   };
 
+  getAmount(id) {
+    const { amount } = this.props;
+    return amount[id];
+  }
+
   render() {
     const { products } = this.state;
 
@@ -40,7 +45,8 @@ class Home extends Component {
             <span>{product.priceFormatted}</span>
             <button onClick={() => this.handleAddProduct(product)}>
               <div>
-                <MdAddShoppingCart size={16} color="#FFF" />3
+                <MdAddShoppingCart size={16} color="#FFF" />
+                {this.getAmount(product.id)}
               </div>
               <span>ADICIONAR AO CARRINHO</span>
             </button>
@@ -52,8 +58,10 @@ class Home extends Component {
 }
 
 const mapState = state => ({
-  cart: state.cart
+  amount: state.cart.reduce((amount, product) => {
+    amount[product.id] = product.amount;
+    return amount;
+  }, {})
 });
 
-
-export default connect()(Home);
+export default connect(mapState)(Home);

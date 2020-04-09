@@ -8,9 +8,7 @@ import logo from "../../assets/images/logo.svg";
 import { connect } from "react-redux";
 
 function Header({ cart }) {
-  console.log("Tamanho do Carrinho: " + cart.length);
   const countItems = cart.reduce((result, item) => {
-    console.log("item: " + item.amount);
     return item.amount + result;
   }, 0);
 
